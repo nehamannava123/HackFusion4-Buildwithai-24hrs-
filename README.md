@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CodeNav AI
 
 Understand any codebase in minutes.
@@ -14,3 +15,6 @@ Understand any codebase in minutes.
 ```bash
 pip install -e .
 
+=======
+# HackFusion4-Buildwithai-24hrs-
+>>>>>>> dc0c4e12594cc9261df00338c5720d1ca634dc4c
