@@ -3,6 +3,7 @@ package com.codenav.backend.util;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class RepoParser {
 
@@ -17,39 +18,60 @@ public class RepoParser {
         if (file == null || !file.exists()) return;
 
         if (file.isDirectory()) {
-            for (File f : file.listFiles()) {
-                scan(f, files);
+            File[] fileList = file.listFiles();
+            if (fileList != null) {
+                for (File f : fileList) {
+                    scan(f, files);
+                }
             }
         } else if (file.getName().endsWith(".java")) {
             files.add(file.getAbsolutePath());
         }
     }
 
-    // 🔹 Find entry point (main class)
+    // 🔹 Entry Point Detection
     public static List<String> findEntryPoint(String path) {
         List<String> files = getAllJavaFiles(path);
         List<String> entryPoints = new ArrayList<>();
 
-        for (String file : files) {
-            if (file.contains("Application.java")) {
-                entryPoints.add(file);
+        for (String filePath : files) {
+            try {
+                File file = new File(filePath);
+                Scanner scanner = new Scanner(file);
+
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+
+                    if (line.contains("@SpringBootApplication") ||
+                        line.contains("public static void main")) {
+
+                        entryPoints.add(filePath);
+                        break;
+                    }
+                }
+
+                scanner.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
         return entryPoints;
     }
 
-    // 🔹 Detect Controller → Service → Repository flow
+    // 🔹 Flow Detection
     public static List<String> findControllerServiceFlow(String path) {
         List<String> files = getAllJavaFiles(path);
         List<String> flow = new ArrayList<>();
 
         for (String file : files) {
-            if (file.toLowerCase().contains("controller")) {
+            String lower = file.toLowerCase();
+
+            if (lower.contains("controller")) {
                 flow.add("Controller → " + file);
-            } else if (file.toLowerCase().contains("service")) {
+            } else if (lower.contains("service")) {
                 flow.add("Service → " + file);
-            } else if (file.toLowerCase().contains("repository")) {
+            } else if (lower.contains("repository")) {
                 flow.add("Repository → " + file);
             }
         }
