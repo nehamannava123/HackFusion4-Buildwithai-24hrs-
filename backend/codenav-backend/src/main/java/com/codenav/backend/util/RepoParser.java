@@ -3,7 +3,6 @@ package com.codenav.backend.util;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class RepoParser {
 
@@ -15,45 +14,46 @@ public class RepoParser {
     }
 
     private static void scan(File file, List<String> files) {
-        if (file.isDirectory()) {
-            File[] fileList = file.listFiles();
+        if (file == null || !file.exists()) return;
 
-            if (fileList != null) {
-                for (File f : fileList) {
-                    scan(f, files);
-                }
+        if (file.isDirectory()) {
+            for (File f : file.listFiles()) {
+                scan(f, files);
             }
         } else if (file.getName().endsWith(".java")) {
             files.add(file.getAbsolutePath());
         }
     }
 
-    // 🔥 ENTRY POINT DETECTION
-    public static String findEntryPoint(String path) {
+    // 🔹 Find entry point (main class)
+    public static List<String> findEntryPoint(String path) {
         List<String> files = getAllJavaFiles(path);
+        List<String> entryPoints = new ArrayList<>();
 
-        for (String filePath : files) {
-            try {
-                File file = new File(filePath);
-                Scanner scanner = new Scanner(file);
-
-                while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine();
-
-                    if (line.contains("@SpringBootApplication") ||
-                        line.contains("public static void main")) {
-
-                        scanner.close();
-                        return filePath;
-                    }
-                }
-
-                scanner.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+        for (String file : files) {
+            if (file.contains("Application.java")) {
+                entryPoints.add(file);
             }
         }
 
-        return "No entry point found";
+        return entryPoints;
+    }
+
+    // 🔹 Detect Controller → Service → Repository flow
+    public static List<String> findControllerServiceFlow(String path) {
+        List<String> files = getAllJavaFiles(path);
+        List<String> flow = new ArrayList<>();
+
+        for (String file : files) {
+            if (file.toLowerCase().contains("controller")) {
+                flow.add("Controller → " + file);
+            } else if (file.toLowerCase().contains("service")) {
+                flow.add("Service → " + file);
+            } else if (file.toLowerCase().contains("repository")) {
+                flow.add("Repository → " + file);
+            }
+        }
+
+        return flow;
     }
 }
