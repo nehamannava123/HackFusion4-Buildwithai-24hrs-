@@ -1,7 +1,7 @@
 // services/explainService.js
 // Handles /explain endpoint: generates codebase explanation + flow steps
 
-const { callGemini } = require("./geminiClient");
+const { callGemini } = require("../geminiClient");
 
 // ─────────────────────────────────────────────
 // FALLBACK: Template-based explanation

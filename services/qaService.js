@@ -1,7 +1,7 @@
 // services/qaService.js
 // Handles /ask endpoint: answers questions about the codebase
 
-const { callGemini } = require("./geminiClient");
+const { callGemini } = require("../geminiClient");
 
 // ─────────────────────────────────────────────
 // FALLBACK: Rule-based Q&A (no API needed)
