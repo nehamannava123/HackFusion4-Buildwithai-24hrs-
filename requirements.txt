@@ -1,0 +1,8 @@
+# CodeNav AI has NO external dependencies!
+# Everything works with pure Python standard library
+
+# For development only (optional):
+# pytest>=7.0.0
+# requirements.txt
+flask>=2.0.0
+# No other dependencies needed!
