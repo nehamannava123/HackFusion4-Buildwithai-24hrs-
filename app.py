@@ -1,6 +1,15 @@
 # app.py - Main Flask Application
-from flask import Flask, render_template, request, jsonify
 import os
+import sys
+
+# For Vercel serverless environment
+try:
+    from flask import Flask, render_template_string, request, jsonify
+except ImportError:
+    import flask
+    from flask import Flask, render_template_string, request, jsonify
+
+from flask import Flask, render_template, request, jsonify
 from pathlib import Path
 
 from codenav.analyzer import RepoAnalyzer
