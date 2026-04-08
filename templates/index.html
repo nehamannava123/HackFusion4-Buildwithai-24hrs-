@@ -1,0 +1,304 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeNav AI - Codebase Navigation Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <span class="logo-text">CodeNav AI</span>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" id="settingsBtn" title="Settings">⚙️</button>
+                <button class="icon-btn" id="profileBtn" title="Profile">👤</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Repository Input -->
+            <div class="repo-section">
+                <div class="repo-input-group">
+                    <span class="repo-icon">📁</span>
+                    <input type="text" id="repoPath" placeholder="Enter repository path (e.g., C:\my-project or /Users/name/project)" class="repo-input">
+                    <button id="analyzeBtn" class="analyze-btn">Analyze</button>
+                </div>
+            </div>
+
+            <!-- Project Dashboard -->
+            <div class="dashboard" id="dashboard" style="display: none;">
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-value" id="fileCount">0</div>
+                        <div class="stat-label">Files</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="lineCount">0</div>
+                        <div class="stat-label">Lines of Code</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="language">---</div>
+                        <div class="stat-label">Language</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="entryPoint">---</div>
+                        <div class="stat-label">Entry Point</div>
+                    </div>
+                </div>
+
+                <div class="arch-grid">
+                    <div class="arch-card">
+                        <div class="arch-title">Controllers</div>
+                        <div class="arch-count" id="controllerCount">0</div>
+                    </div>
+                    <div class="arch-card">
+                        <div class="arch-title">Services</div>
+                        <div class="arch-count" id="serviceCount">0</div>
+                    </div>
+                    <div class="arch-card">
+                        <div class="arch-title">Models</div>
+                        <div class="arch-count" id="modelCount">0</div>
+                    </div>
+                    <div class="arch-card">
+                        <div class="arch-title">Routes</div>
+                        <div class="arch-count" id="routeCount">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Path -->
+            <div class="nav-path" id="navPath" style="display: none;">
+                <div class="path-title">🗺️ Navigation Path</div>
+                <div class="path-steps" id="pathSteps"></div>
+            </div>
+
+            <!-- Chat Interface -->
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <div class="message-text">Welcome to CodeNav AI! I've analyzed your codebase and I'm ready to help. Ask me anything about the project!</div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <div class="input-wrapper">
+                        <input type="text" id="questionInput" placeholder="Type your question here..." class="chat-input">
+                        <button id="sendBtn" class="send-btn">Send</button>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="quick-btn" data-question="Where should I start?">📍 Where to start?</button>
+                        <button class="quick-btn" data-question="How does authentication work?">🔐 Authentication flow</button>
+                        <button class="quick-btn" data-question="What is the project structure?">🏗️ Architecture</button>
+                        <button class="quick-btn" data-question="flow database">💾 Database flow</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="spinner"></div>
+        <div class="loading-text">Analyzing repository...</div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const repoPathInput = document.getElementById('repoPath');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const dashboard = document.getElementById('dashboard');
+        const navPath = document.getElementById('navPath');
+        const chatMessages = document.getElementById('chatMessages');
+        const questionInput = document.getElementById('questionInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        // Add message to chat
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${isUser ? '👤' : '🤖'}</div>
+                <div class="message-content">
+                    <div class="message-text">${message}</div>
+                    <div class="message-time">Just now</div>
+                </div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Show loading overlay
+        function showLoading() {
+            loadingOverlay.style.display = 'flex';
+        }
+
+        function hideLoading() {
+            loadingOverlay.style.display = 'none';
+        }
+
+        // Analyze repository
+        async function analyzeRepository() {
+            const repoPath = repoPathInput.value.trim();
+            if (!repoPath) {
+                addMessage('Please enter a repository path first!', false);
+                return;
+            }
+
+            showLoading();
+            addMessage(`Analyzing repository: ${repoPath}...`, false);
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path: repoPath })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    addMessage(`Error: ${data.error}`, false);
+                    hideLoading();
+                    return;
+                }
+
+                if (data.success) {
+                    // Update dashboard
+                    document.getElementById('fileCount').textContent = data.stats.files;
+                    document.getElementById('lineCount').textContent = data.stats.lines.toLocaleString();
+                    document.getElementById('language').textContent = data.stats.language;
+                    document.getElementById('entryPoint').textContent = data.stats.entry_point.split('/').pop();
+                    
+                    document.getElementById('controllerCount').textContent = data.architecture.controllers;
+                    document.getElementById('serviceCount').textContent = data.architecture.services;
+                    document.getElementById('modelCount').textContent = data.architecture.models;
+                    document.getElementById('routeCount').textContent = data.architecture.routes;
+                    
+                    dashboard.style.display = 'block';
+                    
+                    // Load navigation path
+                    await loadNavigationPath();
+                    navPath.style.display = 'block';
+                    
+                    addMessage(`✅ Analysis complete! Found ${data.stats.files} files (${data.stats.lines.toLocaleString()} lines). This appears to be a ${data.stats.language} project. Where would you like to start?`, false);
+                }
+            } catch (error) {
+                addMessage(`Error: ${error.message}`, false);
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Load navigation path
+        async function loadNavigationPath() {
+            try {
+                const response = await fetch('/navigation-path');
+                const data = await response.json();
+                
+                const pathSteps = document.getElementById('pathSteps');
+                pathSteps.innerHTML = '';
+                
+                if (data.steps && data.steps.length > 0) {
+                    data.steps.forEach((step, index) => {
+                        const stepDiv = document.createElement('div');
+                        stepDiv.className = 'path-step';
+                        stepDiv.innerHTML = `
+                            <div class="step-number">${step.step}</div>
+                            <div class="step-content">
+                                <div class="step-title">${step.title}</div>
+                                <div class="step-file">${step.file || 'N/A'}</div>
+                            </div>
+                            ${index < data.steps.length - 1 ? '<div class="step-arrow">→</div>' : ''}
+                        `;
+                        pathSteps.appendChild(stepDiv);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading navigation path:', error);
+            }
+        }
+
+        // Ask question
+        async function askQuestion() {
+            const question = questionInput.value.trim();
+            if (!question) return;
+            
+            addMessage(question, true);
+            questionInput.value = '';
+            
+            // Check if it's a flow command
+            if (question.toLowerCase().startsWith('flow ')) {
+                const feature = question.substring(5);
+                await simulateFlow(feature);
+                return;
+            }
+            
+            try {
+                const response = await fetch('/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: question })
+                });
+                
+                const data = await response.json();
+                addMessage(data.answer, false);
+            } catch (error) {
+                addMessage(`Error: ${error.message}`, false);
+            }
+        }
+
+        // Simulate flow
+        async function simulateFlow(feature) {
+            try {
+                const response = await fetch('/flow', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ feature: feature })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success && data.visualization) {
+                    addMessage(`📊 Simulating ${data.flow_type} flow:\n\n${data.visualization}`, false);
+                } else {
+                    addMessage(`Could not simulate flow for "${feature}". Try: authentication, database, or api_request`, false);
+                }
+            } catch (error) {
+                addMessage(`Error: ${error.message}`, false);
+            }
+        }
+
+        // Event Listeners
+        analyzeBtn.addEventListener('click', analyzeRepository);
+        sendBtn.addEventListener('click', askQuestion);
+        questionInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') askQuestion();
+        });
+        
+        // Quick action buttons
+        document.querySelectorAll('.quick-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const question = btn.getAttribute('data-question');
+                questionInput.value = question;
+                askQuestion();
+            });
+        });
+
+        // Enter key for repo path
+        repoPathInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') analyzeRepository();
+        });
+    </script>
+</body>
+</html>
