@@ -15,9 +15,15 @@ public class CodeNavController {
         return "Backend is working 🚀";
     }
 
-    // 🔥 Main Feature (FIXED - no space)
+    // 🔹 Analyze repo (list Java files)
     @GetMapping("/analyzeRepo")
     public List<String> analyzeRepo(@RequestParam String path) {
         return RepoParser.getAllJavaFiles(path);
+    }
+
+    // 🔥 Entry Point Detection
+    @GetMapping("/entryPoint")
+    public String getEntryPoint(@RequestParam String path) {
+        return RepoParser.findEntryPoint(path);
     }
 }
