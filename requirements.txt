@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 flask>=2.0.0
+=======
+flask==2.3.3
+waitress==2.1.2
+gunicorn==21.2.0
+>>>>>>> 7db48e7 (Final version: CodeNav AI complete)
