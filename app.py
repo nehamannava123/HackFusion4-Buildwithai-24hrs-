@@ -1,28 +1,11 @@
-<<<<<<< HEAD
-# app.py
-from flask import Flask, render_template, request, jsonify
-from pathlib import Path
+# app.py - CodeNav AI with GitHub Repository Support
+import os
 import sys
-import os
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-from codenav.analyzer import RepoAnalyzer
-from codenav.detector import EntryPointDetector
-from codenav.visualizer import FlowVisualizer
-from codenav.qa import CodebaseQA
-
-app = Flask(__name__)
-
-current_repo_info = None
-current_qa = None
-current_flow_viz = None
-current_detector = None
-=======
-# app.py - Main Flask Application
-from flask import Flask, render_template, request, jsonify
-import os
+import tempfile
+import shutil
 from pathlib import Path
+from flask import Flask, render_template, request, jsonify
+import git
 
 from codenav.analyzer import RepoAnalyzer
 from codenav.hybrid_qa import HybridQAAgent
@@ -35,63 +18,54 @@ app.config['SECRET_KEY'] = 'codenav-ai-secret-key'
 current_repo = None
 current_qa = None
 current_viz = None
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
+current_temp_dir = None
+
+def clone_github_repo(github_url):
+    """Clone a GitHub repository to a temporary directory"""
+    global current_temp_dir
+    
+    # Create temporary directory
+    current_temp_dir = tempfile.mkdtemp()
+    
+    # Clone the repository
+    repo = git.Repo.clone_from(github_url, current_temp_dir)
+    
+    return current_temp_dir
+
+def cleanup_temp_dir():
+    """Clean up temporary directory"""
+    global current_temp_dir
+    if current_temp_dir and os.path.exists(current_temp_dir):
+        shutil.rmtree(current_temp_dir, ignore_errors=True)
+        current_temp_dir = None
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/analyze', methods=['POST'])
-<<<<<<< HEAD
-def analyze_repository():
-    global current_repo_info, current_qa, current_flow_viz, current_detector
-=======
 def analyze():
     global current_repo, current_qa, current_viz
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
     
     data = request.get_json()
-    repo_path = data.get('path', '')
+    github_url = data.get('url', '')
     
-    if not repo_path:
-        return jsonify({'error': 'No path provided'}), 400
+    if not github_url:
+        return jsonify({'error': 'Please provide a GitHub repository URL'}), 400
     
-    if not os.path.exists(repo_path):
-        return jsonify({'error': f'Path "{repo_path}" does not exist'}), 404
+    # Validate GitHub URL
+    if not github_url.startswith('https://github.com/') and not github_url.startswith('http://github.com/'):
+        return jsonify({'error': 'Please enter a valid GitHub URL (e.g., https://github.com/user/repo)'}), 400
     
     try:
-<<<<<<< HEAD
-        current_repo_info = RepoAnalyzer(repo_path).analyze()
+        # Clean up previous temp directory
+        cleanup_temp_dir()
         
-        arch_patterns = {
-            'controllers': [f.path for f in current_repo_info.files if 'controller' in f.path.lower()],
-            'services': [f.path for f in current_repo_info.files if 'service' in f.path.lower()],
-            'models': [f.path for f in current_repo_info.files if 'model' in f.path.lower()],
-            'routes': [f.path for f in current_repo_info.files if 'route' in f.path.lower()],
-        }
+        # Clone the repository
+        print(f"📦 Cloning repository: {github_url}")
+        repo_path = clone_github_repo(github_url)
         
-        current_detector = EntryPointDetector(current_repo_info, arch_patterns)
-        current_flow_viz = FlowVisualizer(current_repo_info, current_repo_info.dependencies)
-        current_qa = CodebaseQA(current_repo_info, arch_patterns, current_repo_info.dependencies)
-        
-        response = {
-            'success': True,
-            'stats': {
-                'files': len(current_repo_info.files),
-                'lines': current_repo_info.total_lines,
-                'language': current_repo_info.language.upper(),
-                'entry_point': current_repo_info.entry_points[0] if current_repo_info.entry_points else 'Not found'
-            },
-            'architecture': {
-                'controllers': len(arch_patterns['controllers']),
-                'services': len(arch_patterns['services']),
-                'models': len(arch_patterns['models']),
-                'routes': len(arch_patterns['routes'])
-            },
-            'file_types': dict(list(current_repo_info.file_types.items())[:10])
-        }
-        return jsonify(response)
-=======
+        # Analyze the cloned repository
         analyzer = RepoAnalyzer(repo_path)
         current_repo = analyzer.analyze()
         current_qa = HybridQAAgent(current_repo)
@@ -106,8 +80,12 @@ def analyze():
             'path': f.path
         } for f in sorted_files]
         
+        # Get repository name from URL
+        repo_name = github_url.rstrip('/').split('/')[-1]
+        
         return jsonify({
             'success': True,
+            'repo_name': repo_name,
             'stats': {
                 'files': len(current_repo.files),
                 'lines': current_repo.total_lines,
@@ -117,36 +95,21 @@ def analyze():
             'files_list': files_list,
             'ai_status': current_qa.get_ai_status()
         })
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
         
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        cleanup_temp_dir()
+        return jsonify({'error': f'Failed to analyze repository: {str(e)}'}), 500
 
 @app.route('/ask', methods=['POST'])
-<<<<<<< HEAD
-def ask_question():
-    global current_qa
-    if not current_qa:
-        return jsonify({'error': 'No repository analyzed'}), 400
-=======
 def ask():
     global current_qa
     
     if not current_qa:
-        return jsonify({'error': 'No repository analyzed. Please analyze a folder first.'}), 400
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
+        return jsonify({'error': 'No repository analyzed. Please analyze a GitHub repository first.'}), 400
     
     data = request.get_json()
     question = data.get('question', '')
     result = current_qa.ask(question)
-<<<<<<< HEAD
-    return jsonify(result)
-
-@app.route('/flow', methods=['POST'])
-def simulate_flow():
-    global current_flow_viz
-    if not current_flow_viz:
-=======
     
     return jsonify({
         'answer': result['answer'],
@@ -159,42 +122,16 @@ def flow():
     global current_viz
     
     if not current_viz:
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
         return jsonify({'error': 'No repository analyzed'}), 400
     
     data = request.get_json()
     feature = data.get('feature', '')
-<<<<<<< HEAD
-    result = current_flow_viz.simulate_flow(feature)
-    return jsonify(result)
-
-@app.route('/files', methods=['GET'])
-def list_files():
-    global current_repo_info
-    if not current_repo_info:
-        return jsonify({'error': 'No repository analyzed'}), 400
-    
-    files = [{'path': f.path, 'lines': f.lines, 'type': f.file_type} for f in current_repo_info.files]
-    return jsonify({'files': files[:50]})
-
-if __name__ == '__main__':
-    print("""
-    ╔══════════════════════════════════════════════════════════════╗
-    ║                                                              ║
-    ║   🚀 CodeNav AI Web Interface Starting...                    ║
-    ║                                                              ║
-    ║   Open your browser and go to: http://localhost:5000        ║
-    ║                                                              ║
-    ╚══════════════════════════════════════════════════════════════╝
-    """)
-    app.run(debug=True, host='0.0.0.0', port=5000)
-=======
     result = current_viz.simulate_flow(feature)
     return jsonify(result)
 
 @app.route('/health', methods=['GET'])
 def health():
-    return jsonify({'status': 'healthy', 'version': '4.0.0'})
+    return jsonify({'status': 'healthy', 'version': '5.0.0'})
 
 if __name__ == '__main__':
     print("""
@@ -207,15 +144,14 @@ if __name__ == '__main__':
     ║  ╚██████╗╚██████╔╝██████╔╝███████╗██║ ╚████║██║  ██║ ╚████╔╝                ║
     ║   ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝                 ║
     ║                                                                              ║
-    ║                    CodeNav AI v4.0 - Deployment Ready                        ║
+    ║              CodeNav AI v5.0 - GitHub Repository Analyzer                    ║
     ║                                                                              ║
     ║   🚀 Server Starting...                                                      ║
     ║   🌐 URL: http://localhost:5000                                              ║
-    ║   📁 Path: C:\HackFusion4-Final\codenav-ai                                   ║
+    ║   📦 Now supports GitHub repositories!                                       ║
     ║                                                                              ║
     ║   Press Ctrl+C to stop                                                       ║
     ║                                                                              ║
     ╚══════════════════════════════════════════════════════════════════════════════╝
     """)
     app.run(debug=False, host='0.0.0.0', port=5000)
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)

@@ -1,170 +1,10 @@
-<<<<<<< HEAD
-<!-- templates/index.html -->
-=======
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeNav AI - Codebase Navigation Assistant</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">
-                <span class="logo-icon">🤖</span>
-                <span class="logo-text">CodeNav AI</span>
-            </div>
-            <div class="header-actions">
-                <button class="icon-btn" id="settingsBtn" title="Settings">⚙️</button>
-                <button class="icon-btn" id="profileBtn" title="Profile">👤</button>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Repository Input -->
-            <div class="repo-section">
-                <div class="repo-input-group">
-                    <span class="repo-icon">📁</span>
-                    <input type="text" id="repoPath" placeholder="Enter repository path (e.g., C:\my-project or /Users/name/project)" class="repo-input">
-                    <button id="analyzeBtn" class="analyze-btn">Analyze</button>
-                </div>
-            </div>
-
-            <!-- Project Dashboard -->
-            <div class="dashboard" id="dashboard" style="display: none;">
-                <div class="stats-row">
-                    <div class="stat-card">
-                        <div class="stat-value" id="fileCount">0</div>
-                        <div class="stat-label">Files</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="lineCount">0</div>
-                        <div class="stat-label">Lines of Code</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="language">---</div>
-                        <div class="stat-label">Language</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="entryPoint">---</div>
-                        <div class="stat-label">Entry Point</div>
-                    </div>
-                </div>
-
-                <div class="arch-grid">
-                    <div class="arch-card">
-                        <div class="arch-title">Controllers</div>
-                        <div class="arch-count" id="controllerCount">0</div>
-                    </div>
-                    <div class="arch-card">
-                        <div class="arch-title">Services</div>
-                        <div class="arch-count" id="serviceCount">0</div>
-                    </div>
-                    <div class="arch-card">
-                        <div class="arch-title">Models</div>
-                        <div class="arch-count" id="modelCount">0</div>
-                    </div>
-                    <div class="arch-card">
-                        <div class="arch-title">Routes</div>
-                        <div class="arch-count" id="routeCount">0</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Navigation Path -->
-            <div class="nav-path" id="navPath" style="display: none;">
-                <div class="path-title">🗺️ Navigation Path</div>
-                <div class="path-steps" id="pathSteps"></div>
-            </div>
-
-            <!-- Chat Interface -->
-            <div class="chat-container">
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message bot">
-                        <div class="message-avatar">🤖</div>
-                        <div class="message-content">
-                            <div class="message-text">Welcome to CodeNav AI! I've analyzed your codebase and I'm ready to help. Ask me anything about the project!</div>
-                            <div class="message-time">Just now</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-input-area">
-                    <div class="input-wrapper">
-                        <input type="text" id="questionInput" placeholder="Type your question here..." class="chat-input">
-                        <button id="sendBtn" class="send-btn">Send</button>
-                    </div>
-                    <div class="quick-actions">
-                        <button class="quick-btn" data-question="Where should I start?">📍 Where to start?</button>
-                        <button class="quick-btn" data-question="How does authentication work?">🔐 Authentication flow</button>
-                        <button class="quick-btn" data-question="What is the project structure?">🏗️ Architecture</button>
-                        <button class="quick-btn" data-question="flow database">💾 Database flow</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
-        <div class="spinner"></div>
-        <div class="loading-text">Analyzing repository...</div>
-    </div>
-
-    <script>
-        // DOM Elements
-        const repoPathInput = document.getElementById('repoPath');
-        const analyzeBtn = document.getElementById('analyzeBtn');
-        const dashboard = document.getElementById('dashboard');
-        const navPath = document.getElementById('navPath');
-        const chatMessages = document.getElementById('chatMessages');
-        const questionInput = document.getElementById('questionInput');
-        const sendBtn = document.getElementById('sendBtn');
-        const loadingOverlay = document.getElementById('loadingOverlay');
-
-        // Add message to chat
-        function addMessage(message, isUser = false) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-            messageDiv.innerHTML = `
-                <div class="message-avatar">${isUser ? '👤' : '🤖'}</div>
-                <div class="message-content">
-                    <div class="message-text">${message}</div>
-                    <div class="message-time">Just now</div>
-                </div>
-            `;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Show loading overlay
-        function showLoading() {
-            loadingOverlay.style.display = 'flex';
-        }
-
-        function hideLoading() {
-            loadingOverlay.style.display = 'none';
-        }
-
-        // Analyze repository
-        async function analyzeRepository() {
-            const repoPath = repoPathInput.value.trim();
-            if (!repoPath) {
-                addMessage('Please enter a repository path first!', false);
-                return;
-            }
-
-            showLoading();
-            addMessage(`Analyzing repository: ${repoPath}...`, false);
-=======
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>CodeNav AI | Next-Gen Codebase Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>CodeNav AI | GitHub Repository Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -172,68 +12,13 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
-            background: #0a0a0f;
+            background: radial-gradient(circle at 20% 50%, #0a0a1a, #05050f);
             min-height: 100vh;
             color: #fff;
             overflow-x: hidden;
         }
-
-        /* Animated Gradient Background */
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: radial-gradient(circle at 20% 50%, rgba(20, 20, 40, 1), rgba(5, 5, 15, 1));
-        }
-
-        .bg-gradient::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Floating Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(102, 126, 234, 0.5);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            from { transform: translateY(100vh) scale(0); opacity: 0; }
-            50% { opacity: 0.5; }
-            to { transform: translateY(-100vh) scale(1); opacity: 0; }
-        }
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -241,8 +26,6 @@
             position: relative;
             z-index: 1;
         }
-
-        /* Glass Header */
         .header {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -253,15 +36,12 @@
             justify-content: space-between;
             align-items: center;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
-
         .logo {
             display: flex;
             align-items: center;
             gap: 16px;
         }
-
         .logo-icon {
             width: 52px;
             height: 52px;
@@ -271,30 +51,18 @@
             align-items: center;
             justify-content: center;
             font-size: 28px;
-            box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
-            animation: pulse 2s ease-in-out infinite;
         }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); }
-            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
-        }
-
         .logo-text h1 {
             font-size: 28px;
             font-weight: 800;
             background: linear-gradient(135deg, #fff, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
         }
-
         .logo-text p {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.5);
-            margin-top: 4px;
         }
-
         .ai-status-card {
             display: flex;
             align-items: center;
@@ -302,9 +70,7 @@
             background: rgba(255, 255, 255, 0.05);
             padding: 10px 24px;
             border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .ai-badge {
             display: flex;
             align-items: center;
@@ -313,25 +79,17 @@
             border-radius: 40px;
             font-weight: 600;
             font-size: 13px;
-            transition: all 0.3s;
         }
-
         .ai-badge.active {
             background: linear-gradient(135deg, #00b894, #00cec9);
-            box-shadow: 0 0 20px rgba(0, 184, 148, 0.5);
         }
-
         .ai-badge.inactive {
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 165, 0, 0.5);
         }
-
-        /* Hero Section */
         .hero {
             text-align: center;
             margin-bottom: 48px;
         }
-
         .hero-badge {
             display: inline-block;
             background: rgba(102, 126, 234, 0.2);
@@ -340,42 +98,34 @@
             border-radius: 40px;
             font-size: 12px;
             margin-bottom: 20px;
-            backdrop-filter: blur(10px);
         }
-
         .hero h2 {
             font-size: 56px;
             font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
             background: linear-gradient(135deg, #ffffff 0%, #667eea 50%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
         }
-
         .hero p {
             font-size: 18px;
             color: rgba(255, 255, 255, 0.6);
             max-width: 600px;
             margin: 0 auto;
         }
-
-        /* Repository Input - Premium */
         .repo-premium {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
             border-radius: 24px;
             padding: 8px;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s;
         }
-
         .repo-premium:focus-within {
             border-color: #667eea;
             box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
         }
-
         .repo-input-wrapper {
             display: flex;
             gap: 12px;
@@ -383,7 +133,6 @@
             border-radius: 20px;
             padding: 6px;
         }
-
         .repo-icon-box {
             background: rgba(102, 126, 234, 0.15);
             border-radius: 16px;
@@ -391,12 +140,10 @@
             display: flex;
             align-items: center;
         }
-
         .repo-icon-box i {
             font-size: 24px;
             color: #667eea;
         }
-
         .repo-input {
             flex: 1;
             background: transparent;
@@ -407,11 +154,9 @@
             outline: none;
             font-family: 'Space Grotesk', monospace;
         }
-
         .repo-input::placeholder {
             color: rgba(255, 255, 255, 0.4);
         }
-
         .analyze-btn {
             background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
@@ -426,20 +171,25 @@
             transition: all 0.3s;
             font-size: 15px;
         }
-
         .analyze-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
-
-        /* Stats Grid - Premium Cards */
+        .github-note {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 32px;
+        }
+        .github-note i {
+            margin-right: 6px;
+        }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
             margin-bottom: 24px;
         }
-
         .stat-card-premium {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -447,35 +197,15 @@
             padding: 24px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
         }
-
-        .stat-card-premium::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            transition: left 0.5s;
-        }
-
-        .stat-card-premium:hover::after {
-            left: 100%;
-        }
-
         .stat-card-premium:hover {
             transform: translateY(-5px);
             border-color: rgba(102, 126, 234, 0.5);
         }
-
         .stat-icon {
             font-size: 32px;
             margin-bottom: 16px;
         }
-
         .stat-number {
             font-size: 42px;
             font-weight: 800;
@@ -484,23 +214,18 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
         }
-
         .stat-label {
             font-size: 13px;
             color: rgba(255, 255, 255, 0.6);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
-        /* Two Column Layout */
         .two-columns {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
             gap: 24px;
             margin-bottom: 24px;
         }
-
-        /* Files Panel */
         .files-panel {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -508,7 +233,6 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             overflow: hidden;
         }
-
         .panel-header {
             padding: 20px;
             background: rgba(0, 0, 0, 0.3);
@@ -517,20 +241,17 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .panel-header h3 {
             font-size: 18px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
         .file-list {
             max-height: 320px;
             overflow-y: auto;
             padding: 12px;
         }
-
         .file-item {
             display: flex;
             align-items: center;
@@ -539,15 +260,13 @@
             background: rgba(255, 255, 255, 0.03);
             border-radius: 14px;
             margin-bottom: 8px;
-            transition: all 0.2s;
             cursor: pointer;
+            transition: all 0.2s;
         }
-
         .file-item:hover {
             background: rgba(102, 126, 234, 0.15);
             transform: translateX(5px);
         }
-
         .file-icon {
             width: 36px;
             height: 36px;
@@ -557,25 +276,20 @@
             align-items: center;
             justify-content: center;
         }
-
         .file-info {
             flex: 1;
         }
-
         .file-name {
             font-weight: 500;
             font-size: 14px;
             margin-bottom: 4px;
         }
-
         .file-meta {
             font-size: 11px;
             color: rgba(255, 255, 255, 0.5);
             display: flex;
             gap: 12px;
         }
-
-        /* Chat Panel */
         .chat-panel {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -585,7 +299,6 @@
             flex-direction: column;
             height: 500px;
         }
-
         .chat-header {
             padding: 20px;
             background: rgba(0, 0, 0, 0.3);
@@ -594,36 +307,25 @@
             align-items: center;
             gap: 12px;
         }
-
         .chat-header i {
             font-size: 28px;
             color: #667eea;
         }
-
         .chat-messages {
             flex: 1;
             overflow-y: auto;
             padding: 20px;
         }
-
         .message {
             display: flex;
             gap: 14px;
             margin-bottom: 20px;
             animation: slideUp 0.3s ease;
         }
-
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         .message-avatar {
             width: 38px;
             height: 38px;
@@ -634,15 +336,12 @@
             justify-content: center;
             font-size: 18px;
         }
-
         .message.user .message-avatar {
             background: linear-gradient(135deg, #f093fb, #f5576c);
         }
-
         .message-content {
             flex: 1;
         }
-
         .message-text {
             background: rgba(255, 255, 255, 0.08);
             padding: 12px 18px;
@@ -650,11 +349,9 @@
             line-height: 1.5;
             font-size: 14px;
         }
-
         .message.user .message-text {
             background: linear-gradient(135deg, #667eea, #764ba2);
         }
-
         .message-time {
             font-size: 10px;
             color: rgba(255, 255, 255, 0.4);
@@ -663,7 +360,6 @@
             align-items: center;
             gap: 8px;
         }
-
         .ai-tag {
             background: rgba(0, 184, 148, 0.3);
             padding: 2px 8px;
@@ -671,18 +367,14 @@
             font-size: 9px;
             font-weight: 600;
         }
-
-        /* Chat Input */
         .chat-input-area {
             padding: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
-
         .input-group {
             display: flex;
             gap: 12px;
         }
-
         .chat-input {
             flex: 1;
             background: rgba(255, 255, 255, 0.08);
@@ -692,14 +384,10 @@
             color: #fff;
             font-size: 14px;
             outline: none;
-            transition: all 0.3s;
         }
-
         .chat-input:focus {
             border-color: #667eea;
-            background: rgba(255, 255, 255, 0.12);
         }
-
         .send-btn {
             background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
@@ -707,25 +395,14 @@
             border-radius: 16px;
             color: #fff;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
             font-weight: 600;
-            transition: all 0.3s;
         }
-
-        .send-btn:hover {
-            transform: scale(1.02);
-        }
-
-        /* Quick Actions */
         .quick-actions {
             display: flex;
             gap: 10px;
             margin-top: 15px;
             flex-wrap: wrap;
         }
-
         .quick-chip {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -738,14 +415,10 @@
             align-items: center;
             gap: 8px;
         }
-
         .quick-chip:hover {
             background: rgba(102, 126, 234, 0.3);
             border-color: #667eea;
-            transform: translateY(-2px);
         }
-
-        /* Loading Overlay */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -760,97 +433,50 @@
             flex-direction: column;
             z-index: 1000;
         }
-
         .loader {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             border: 3px solid rgba(102, 126, 234, 0.3);
             border-top-color: #667eea;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-
         .loader-text {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size: 16px;
-            color: #fff;
         }
-
-        .loader-subtext {
-            margin-top: 8px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Footer */
         .footer {
             margin-top: 32px;
             text-align: center;
             padding: 20px;
             color: rgba(255, 255, 255, 0.3);
             font-size: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #667eea;
-            border-radius: 3px;
-        }
-
-        /* Responsive */
         @media (max-width: 1024px) {
-            .two-columns {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .hero h2 {
-                font-size: 40px;
-            }
+            .two-columns { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h2 { font-size: 40px; }
         }
-
         @media (max-width: 640px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .repo-input-wrapper {
-                flex-direction: column;
-            }
-            .analyze-btn {
-                justify-content: center;
-            }
+            .stats-grid { grid-template-columns: 1fr; }
+            .repo-input-wrapper { flex-direction: column; }
+            .analyze-btn { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-gradient"></div>
-    <div class="particles" id="particles"></div>
-
     <div class="container">
-        <!-- Premium Header -->
         <div class="header">
             <div class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-brain"></i>
+                    <i class="fab fa-github"></i>
                 </div>
                 <div class="logo-text">
                     <h1>CodeNav AI</h1>
-                    <p>Intelligent Codebase Intelligence</p>
+                    <p>GitHub Repository Analyzer</p>
                 </div>
             </div>
             <div class="ai-status-card">
@@ -862,50 +488,47 @@
             </div>
         </div>
 
-        <!-- Hero -->
         <div class="hero">
             <div class="hero-badge">
-                <i class="fas fa-star-of-life"></i> Next-Gen Code Analysis
+                <i class="fab fa-github"></i> GitHub Repository Analysis
             </div>
-            <h2>Understand Any Codebase<br>In Seconds</h2>
-            <p>Powered by advanced AI and intelligent heuristics — explore, analyze, and master any repository instantly.</p>
+            <h2>Analyze Any GitHub Repository<br>In Seconds</h2>
+            <p>Enter a GitHub URL and let AI analyze the code structure, find entry points, and answer your questions.</p>
         </div>
 
-        <!-- Repository Input -->
         <div class="repo-premium">
             <div class="repo-input-wrapper">
                 <div class="repo-icon-box">
-                    <i class="fas fa-folder-open"></i>
+                    <i class="fab fa-github"></i>
                 </div>
-                <input type="text" id="repoPath" class="repo-input" placeholder="Enter folder path (e.g., C:\my-project or /Users/name/project)">
+                <input type="text" id="githubUrl" class="repo-input" placeholder="https://github.com/user/repository">
                 <button id="analyzeBtn" class="analyze-btn">
-                    <i class="fas fa-rocket"></i>
+                    <i class="fas fa-code-branch"></i>
                     <span>Analyze Repository</span>
                 </button>
             </div>
         </div>
 
-        <!-- Dashboard -->
+        <div class="github-note">
+            <i class="fas fa-info-circle"></i> Enter any public GitHub repository URL. The repository will be cloned and analyzed securely.
+        </div>
+
         <div id="dashboard" style="display: none;">
             <div class="stats-grid" id="statsGrid"></div>
-
             <div class="two-columns">
-                <!-- Files Panel -->
                 <div class="files-panel">
                     <div class="panel-header">
-                        <h3><i class="fas fa-code-branch"></i> Project Explorer</h3>
+                        <h3><i class="fas fa-code-branch"></i> Repository Files</h3>
                         <i class="fas fa-chevron-down" style="color: rgba(255,255,255,0.4);"></i>
                     </div>
                     <div class="file-list" id="fileList"></div>
                 </div>
-
-                <!-- Chat Panel -->
                 <div class="chat-panel">
                     <div class="chat-header">
                         <i class="fas fa-robot"></i>
                         <div>
                             <strong>CodeNav AI Assistant</strong>
-                            <div style="font-size: 11px; color: rgba(255,255,255,0.5);">Powered by Llama 3.2</div>
+                            <div style="font-size: 11px; color: rgba(255,255,255,0.5);">Ask about the repository</div>
                         </div>
                     </div>
                     <div class="chat-messages" id="chatMessages">
@@ -916,11 +539,11 @@
                             <div class="message-content">
                                 <div class="message-text">
                                     <strong>✨ Welcome to CodeNav AI!</strong><br><br>
-                                    I'm your intelligent codebase assistant. Enter a folder path above and click <strong>Analyze</strong> to begin.<br><br>
-                                    <i class="fas fa-lightbulb" style="color: #f39c12;"></i> <strong>Pro tips:</strong><br>
-                                    • Ask "Explain what this project does" for AI insights<br>
-                                    • Try "flow authentication" to see execution diagrams<br>
-                                    • Ask about specific files like "What is main.py?"
+                                    Enter a GitHub repository URL above and click <strong>Analyze</strong> to begin.<br><br>
+                                    <i class="fas fa-lightbulb" style="color: #f39c12;"></i> <strong>Try these examples:</strong><br>
+                                    • <code>https://github.com/pallets/flask</code><br>
+                                    • <code>https://github.com/django/django</code><br>
+                                    • <code>https://github.com/nehamannava123/Hospitalmagement</code>
                                 </div>
                                 <div class="message-time">
                                     <i class="far fa-clock"></i> Just now
@@ -930,18 +553,17 @@
                     </div>
                     <div class="chat-input-area">
                         <div class="input-group">
-                            <input type="text" id="questionInput" class="chat-input" placeholder="Ask me anything about the codebase...">
+                            <input type="text" id="questionInput" class="chat-input" placeholder="Ask about the repository...">
                             <button id="sendBtn" class="send-btn">
                                 <i class="fas fa-paper-plane"></i>
                                 <span>Send</span>
                             </button>
                         </div>
                         <div class="quick-actions">
-                            <div class="quick-chip" data-q="Where should I start?"><i class="fas fa-flag-checkered"></i> Start</div>
-                            <div class="quick-chip" data-q="How many files?"><i class="fas fa-chart-bar"></i> Stats</div>
-                            <div class="quick-chip" data-q="What language?"><i class="fas fa-code"></i> Language</div>
-                            <div class="quick-chip" data-q="Explain what this project does"><i class="fas fa-brain"></i> AI Explain</div>
-                            <div class="quick-chip" data-q="flow authentication"><i class="fas fa-diagram-project"></i> Flow</div>
+                            <div class="quick-chip" data-q="What is the main purpose of this repository?"><i class="fas fa-question-circle"></i> Purpose</div>
+                            <div class="quick-chip" data-q="What is the entry point of this application?"><i class="fas fa-play-circle"></i> Entry Point</div>
+                            <div class="quick-chip" data-q="What programming languages are used?"><i class="fas fa-code"></i> Languages</div>
+                            <div class="quick-chip" data-q="Explain the architecture of this project"><i class="fas fa-brain"></i> Architecture</div>
                         </div>
                     </div>
                 </div>
@@ -949,35 +571,20 @@
         </div>
 
         <div class="footer">
-            <i class="fas fa-shield-alt"></i> Privacy-First • Zero Code Upload • Local Processing Only
+            <i class="fas fa-shield-alt"></i> Privacy-First • Temporary Cloning • Auto-Cleanup
         </div>
     </div>
 
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loader"></div>
-        <div class="loader-text">Analyzing Repository Structure</div>
-        <div class="loader-subtext">Scanning files, detecting patterns, building context...</div>
+        <div class="loader-text">Cloning repository from GitHub...</div>
     </div>
 
     <script>
-        // Create particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = 10 + Math.random() * 20 + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-        createParticles();
-
         let currentRepoData = null;
         let aiAvailable = false;
 
-        function updateStatsGrid(stats) {
+        function updateStatsGrid(stats, repoName) {
             const grid = document.getElementById('statsGrid');
             grid.innerHTML = `
                 <div class="stat-card-premium">
@@ -996,9 +603,9 @@
                     <div class="stat-label">Primary Language</div>
                 </div>
                 <div class="stat-card-premium">
-                    <div class="stat-icon"><i class="fas fa-play-circle"></i></div>
-                    <div class="stat-number" style="font-size: 24px;">${stats.entry_point.length > 20 ? stats.entry_point.substring(0, 20) + '...' : stats.entry_point}</div>
-                    <div class="stat-label">Entry Point</div>
+                    <div class="stat-icon"><i class="fab fa-github"></i></div>
+                    <div class="stat-number" style="font-size: 20px;">${repoName}</div>
+                    <div class="stat-label">Repository</div>
                 </div>
             `;
         }
@@ -1016,7 +623,7 @@
                         <div class="file-name">${f.name}</div>
                         <div class="file-meta">
                             <span><i class="far fa-file"></i> ${f.lines} lines</span>
-                            <span><i class="far fa-clock"></i> ${f.modified || 'N/A'}</span>
+                            <span><i class="far fa-calendar"></i> ${f.modified || 'N/A'}</span>
                         </div>
                     </div>
                     <i class="fas fa-chevron-right" style="color: rgba(255,255,255,0.3);"></i>
@@ -1050,116 +657,33 @@
         }
 
         async function analyzeRepository() {
-            const path = document.getElementById('repoPath').value.trim();
-            if (!path) {
-                addMessage('Please enter a valid folder path!', false);
+            const githubUrl = document.getElementById('githubUrl').value.trim();
+            if (!githubUrl) {
+                addMessage('Please enter a GitHub repository URL!', false);
                 return;
             }
 
             document.getElementById('loadingOverlay').style.display = 'flex';
-            addMessage(`<i class="fas fa-search"></i> Analyzing <strong>${path}</strong>...`, false);
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
+            document.querySelector('.loader-text').innerHTML = 'Cloning repository from GitHub...';
+            addMessage(`<i class="fab fa-github"></i> Analyzing <strong>${githubUrl}</strong>...`, false);
 
             try {
                 const response = await fetch('/analyze', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-<<<<<<< HEAD
-                    body: JSON.stringify({ path: repoPath })
-                });
-
-                const data = await response.json();
-
-                if (data.error) {
-                    addMessage(`Error: ${data.error}`, false);
-                    hideLoading();
-=======
-                    body: JSON.stringify({ path: path })
+                    body: JSON.stringify({ url: githubUrl })
                 });
                 const data = await response.json();
 
                 if (data.error) {
                     addMessage(`<i class="fas fa-exclamation-triangle"></i> Error: ${data.error}`, false);
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
                     return;
                 }
 
                 if (data.success) {
-<<<<<<< HEAD
-                    // Update dashboard
-                    document.getElementById('fileCount').textContent = data.stats.files;
-                    document.getElementById('lineCount').textContent = data.stats.lines.toLocaleString();
-                    document.getElementById('language').textContent = data.stats.language;
-                    document.getElementById('entryPoint').textContent = data.stats.entry_point.split('/').pop();
-                    
-                    document.getElementById('controllerCount').textContent = data.architecture.controllers;
-                    document.getElementById('serviceCount').textContent = data.architecture.services;
-                    document.getElementById('modelCount').textContent = data.architecture.models;
-                    document.getElementById('routeCount').textContent = data.architecture.routes;
-                    
-                    dashboard.style.display = 'block';
-                    
-                    // Load navigation path
-                    await loadNavigationPath();
-                    navPath.style.display = 'block';
-                    
-                    addMessage(`✅ Analysis complete! Found ${data.stats.files} files (${data.stats.lines.toLocaleString()} lines). This appears to be a ${data.stats.language} project. Where would you like to start?`, false);
-                }
-            } catch (error) {
-                addMessage(`Error: ${error.message}`, false);
-            } finally {
-                hideLoading();
-            }
-        }
-
-        // Load navigation path
-        async function loadNavigationPath() {
-            try {
-                const response = await fetch('/navigation-path');
-                const data = await response.json();
-                
-                const pathSteps = document.getElementById('pathSteps');
-                pathSteps.innerHTML = '';
-                
-                if (data.steps && data.steps.length > 0) {
-                    data.steps.forEach((step, index) => {
-                        const stepDiv = document.createElement('div');
-                        stepDiv.className = 'path-step';
-                        stepDiv.innerHTML = `
-                            <div class="step-number">${step.step}</div>
-                            <div class="step-content">
-                                <div class="step-title">${step.title}</div>
-                                <div class="step-file">${step.file || 'N/A'}</div>
-                            </div>
-                            ${index < data.steps.length - 1 ? '<div class="step-arrow">→</div>' : ''}
-                        `;
-                        pathSteps.appendChild(stepDiv);
-                    });
-                }
-            } catch (error) {
-                console.error('Error loading navigation path:', error);
-            }
-        }
-
-        // Ask question
-        async function askQuestion() {
-            const question = questionInput.value.trim();
-            if (!question) return;
-            
-            addMessage(question, true);
-            questionInput.value = '';
-            
-            // Check if it's a flow command
-            if (question.toLowerCase().startsWith('flow ')) {
-                const feature = question.substring(5);
-                await simulateFlow(feature);
-                return;
-            }
-            
-=======
                     currentRepoData = data;
-                    updateStatsGrid(data.stats);
-                    updateFileList(data.files_list || []);
+                    updateStatsGrid(data.stats, data.repo_name);
+                    updateFileList(data.files_list);
                     document.getElementById('dashboard').style.display = 'block';
 
                     const badge = document.getElementById('aiBadge');
@@ -1167,12 +691,12 @@
                         aiAvailable = true;
                         badge.className = 'ai-badge active';
                         badge.innerHTML = '<i class="fas fa-microchip"></i><span>AI Active</span>';
-                        addMessage(`<i class="fas fa-check-circle"></i> <strong>Analysis Complete!</strong><br><br>📊 Found ${data.stats.files} files with ${data.stats.lines.toLocaleString()} lines.<br>🤖 AI is ready! Try asking <strong>"Explain what this project does"</strong>`, false);
+                        addMessage(`<i class="fas fa-check-circle"></i> <strong>Analysis Complete!</strong><br><br>📊 Found ${data.stats.files} files with ${data.stats.lines.toLocaleString()} lines.<br>🤖 AI is ready! Try asking about the code.`, false);
                     } else {
                         aiAvailable = false;
                         badge.className = 'ai-badge inactive';
                         badge.innerHTML = '<i class="fas fa-microchip"></i><span>AI Standby</span>';
-                        addMessage(`<i class="fas fa-check-circle"></i> <strong>Analysis Complete!</strong><br><br>📊 Found ${data.stats.files} files with ${data.stats.lines.toLocaleString()} lines.<br>⚡ AI features available with Ollama installation.`, false);
+                        addMessage(`<i class="fas fa-check-circle"></i> <strong>Analysis Complete!</strong><br><br>📊 Found ${data.stats.files} files with ${data.stats.lines.toLocaleString()} lines.`, false);
                     }
                 }
             } catch (error) {
@@ -1189,84 +713,20 @@
             addMessage(question, true);
             document.getElementById('questionInput').value = '';
 
-            if (question.toLowerCase().startsWith('flow')) {
-                try {
-                    const response = await fetch('/flow', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ feature: question.substring(5).trim() })
-                    });
-                    const data = await response.json();
-                    addMessage(data.visualization || data.description || 'Flow simulation complete', false);
-                } catch (error) {
-                    addMessage(`Error: ${error.message}`, false);
-                }
-                return;
-            }
-
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
             try {
                 const response = await fetch('/ask', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ question: question })
                 });
-<<<<<<< HEAD
-                
-                const data = await response.json();
-                addMessage(data.answer, false);
-            } catch (error) {
-                addMessage(`Error: ${error.message}`, false);
-            }
-        }
-
-        // Simulate flow
-        async function simulateFlow(feature) {
-            try {
-                const response = await fetch('/flow', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ feature: feature })
-                });
-                
-                const data = await response.json();
-                
-                if (data.success && data.visualization) {
-                    addMessage(`📊 Simulating ${data.flow_type} flow:\n\n${data.visualization}`, false);
-                } else {
-                    addMessage(`Could not simulate flow for "${feature}". Try: authentication, database, or api_request`, false);
-                }
-=======
                 const data = await response.json();
                 addMessage(data.answer, false, data.ai_used);
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
             } catch (error) {
                 addMessage(`Error: ${error.message}`, false);
             }
         }
 
         // Event Listeners
-<<<<<<< HEAD
-        analyzeBtn.addEventListener('click', analyzeRepository);
-        sendBtn.addEventListener('click', askQuestion);
-        questionInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') askQuestion();
-        });
-        
-        // Quick action buttons
-        document.querySelectorAll('.quick-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const question = btn.getAttribute('data-question');
-                questionInput.value = question;
-                askQuestion();
-            });
-        });
-
-        // Enter key for repo path
-        repoPathInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') analyzeRepository();
-        });
-=======
         document.getElementById('analyzeBtn').addEventListener('click', analyzeRepository);
         document.getElementById('sendBtn').addEventListener('click', askQuestion);
         document.getElementById('questionInput').addEventListener('keypress', (e) => {
@@ -1278,7 +738,6 @@
                 askQuestion();
             });
         });
->>>>>>> 7db48e7 (Final version: CodeNav AI complete)
     </script>
 </body>
 </html>
