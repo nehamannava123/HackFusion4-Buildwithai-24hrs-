@@ -1,0 +1,19 @@
+/* static/style.css - Additional styles if needed */
+/* Main styles are already in index.html, this is for any extras */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom selection color */
+::selection {
+    background: rgba(102, 126, 234, 0.3);
+    color: #fff;
+}
+
+/* Focus ring for accessibility */
+:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
