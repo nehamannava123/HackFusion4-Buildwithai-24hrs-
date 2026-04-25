@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # analyzer.py - Advanced GitHub repository analyzer
+=======
+# analyzer.py - Complete Working Version
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
 import os
 import re
 from pathlib import Path
@@ -38,11 +42,15 @@ class RepoAnalyzer:
     def __init__(self, repo_path: str):
         self.repo_path = Path(repo_path)
         self.repo_info = RepoInfo(root_path=str(repo_path))
+<<<<<<< HEAD
         self.ignore_dirs = {
             'node_modules', 'venv', 'env', '__pycache__', '.git', 
             'dist', 'build', '.next', '.nuxt', '.cache', '.idea', 
             '.vscode', 'coverage', '.pytest_cache'
         }
+=======
+        self.ignore_dirs = {'node_modules', 'venv', '__pycache__', '.git', 'dist', 'build'}
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         
     def analyze(self) -> RepoInfo:
         print(f"🔍 Analyzing {self.repo_path}...")
@@ -50,9 +58,13 @@ class RepoAnalyzer:
         self._calculate_metrics()
         self._detect_entry_points()
         self._detect_language()
+<<<<<<< HEAD
         self._detect_framework()
         self._find_largest_file()
         self._calculate_complexity()
+=======
+        self._find_largest_file()
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         
         print(f"   ✅ {len(self.repo_info.files)} files | {self.repo_info.total_lines:,} lines | {self.repo_info.language.upper()}")
         if self.repo_info.entry_points:
@@ -60,12 +72,16 @@ class RepoAnalyzer:
         return self.repo_info
     
     def _scan_files(self):
+<<<<<<< HEAD
         extensions = {
             '.py', '.js', '.ts', '.jsx', '.tsx', '.html', '.htm', 
             '.css', '.scss', '.sass', '.json', '.md', '.txt', 
             '.java', '.go', '.rb', '.php', '.c', '.cpp', '.h', 
             '.hpp', '.cs', '.swift', '.kt', '.rs', '.xml', '.yaml', '.yml'
         }
+=======
+        extensions = {'.py', '.js', '.ts', '.jsx', '.tsx', '.html', '.htm', '.css', '.json', '.md', '.txt', '.java', '.go'}
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         
         for file_path in self.repo_path.rglob('*'):
             if any(ignore in file_path.parts for ignore in self.ignore_dirs):
@@ -92,7 +108,11 @@ class RepoAnalyzer:
             last_modified=modified
         )
         
+<<<<<<< HEAD
         # Parse Python
+=======
+        # Parse based on file extension
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         if file_path.suffix == '.py':
             self._parse_python(content, file_info)
         elif file_path.suffix in ['.js', '.ts', '.jsx', '.tsx']:
@@ -140,17 +160,40 @@ class RepoAnalyzer:
                 file_info.imports.append(line.strip())
     
     def _parse_html(self, content: str, file_info: FileInfo):
+<<<<<<< HEAD
+=======
+        # Check for title
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         title_match = re.search(r'<title>([^<]+)</title>', content, re.IGNORECASE)
         if title_match:
             file_info.imports.append(f"Title: {title_match.group(1)}")
         
+<<<<<<< HEAD
+=======
+        # Check for scripts
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         script_count = len(re.findall(r'<script', content, re.IGNORECASE))
         if script_count > 0:
             file_info.imports.append(f"Contains {script_count} script(s)")
         
+<<<<<<< HEAD
         css_count = len(re.findall(r'<link[^>]*stylesheet', content, re.IGNORECASE))
         if css_count > 0:
             file_info.imports.append(f"Links {css_count} CSS file(s)")
+=======
+        # Check for CSS links
+        css_count = len(re.findall(r'<link[^>]*stylesheet', content, re.IGNORECASE))
+        if css_count > 0:
+            file_info.imports.append(f"Links {css_count} CSS file(s)")
+        
+        # Check for jQuery
+        if 'jquery' in content.lower():
+            file_info.imports.append("Uses jQuery library")
+        
+        # Check for Bootstrap
+        if 'bootstrap' in content.lower():
+            file_info.imports.append("Uses Bootstrap framework")
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
     
     def _parse_java(self, content: str, file_info: FileInfo):
         lines = content.split('\n')
@@ -191,10 +234,14 @@ class RepoAnalyzer:
             self.repo_info.file_types[ext] = self.repo_info.file_types.get(ext, 0) + 1
     
     def _detect_entry_points(self):
+<<<<<<< HEAD
         entry_names = [
             'main.py', 'app.py', 'index.js', 'server.js', 'app.js', 'main.js', 
             'index.html', 'Main.java', 'Application.java', 'main.go', 'run.py'
         ]
+=======
+        entry_names = ['main.py', 'app.py', 'index.js', 'server.js', 'app.js', 'main.js', 'index.html']
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         for f in self.repo_info.files:
             if f.name in entry_names or f.has_main:
                 self.repo_info.entry_points.append(f.path)
@@ -209,7 +256,11 @@ class RepoAnalyzer:
             'py': 'Python', 'js': 'JavaScript', 'ts': 'TypeScript',
             'html': 'HTML', 'htm': 'HTML', 'css': 'CSS',
             'json': 'JSON', 'md': 'Markdown', 'java': 'Java',
+<<<<<<< HEAD
             'go': 'Go', 'rb': 'Ruby', 'php': 'PHP', 'cpp': 'C++'
+=======
+            'go': 'Go', 'txt': 'Text'
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         }
         
         for f in self.repo_info.files:
@@ -223,6 +274,7 @@ class RepoAnalyzer:
         else:
             self.repo_info.language = "Unknown"
     
+<<<<<<< HEAD
     def _detect_framework(self):
         framework_indicators = {
             'React': ['react', 'React', 'useState', 'useEffect', 'jsx'],
@@ -266,3 +318,9 @@ class RepoAnalyzer:
                 max_complexity = complexity
                 complex_file = file.name
         self.repo_info.most_complex_file = complex_file
+=======
+    def _find_largest_file(self):
+        if self.repo_info.files:
+            largest = max(self.repo_info.files, key=lambda f: f.lines)
+            self.repo_info.largest_file = largest.name
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb

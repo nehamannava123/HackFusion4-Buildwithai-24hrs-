@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # detector.py - Entry point detection and navigation
+=======
+# detector.py - Entry point detection
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
 from typing import Dict, List
 
 class EntryPointDetector:
@@ -8,6 +12,7 @@ class EntryPointDetector:
     
     def get_best_starting_point(self) -> Dict:
         if self.repo.entry_points:
+<<<<<<< HEAD
             return {
                 'path': self.repo.entry_points[0],
                 'confidence': 'high',
@@ -77,3 +82,17 @@ class EntryPointDetector:
             }
         }
         return paths.get(level, paths['beginner'])
+=======
+            return {'path': self.repo.entry_points[0], 'confidence': 'high'}
+        return {'path': None, 'confidence': 'low'}
+    
+    def generate_navigation_path(self, start_point: Dict) -> List[Dict]:
+        return [
+            {'step': 1, 'title': 'Entry Point', 'file': start_point.get('path', 'README.md')},
+            {'step': 2, 'title': 'Core Modules', 'description': 'Explore dependencies'},
+            {'step': 3, 'title': 'Key Functions', 'description': 'Understand main logic'}
+        ]
+    
+    def get_learning_path(self, level: str = 'beginner') -> Dict:
+        return {'title': f'{level.capitalize()} Path', 'estimated_time': '20 min', 'modules': []}
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb

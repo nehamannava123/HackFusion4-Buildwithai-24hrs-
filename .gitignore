@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python
 __pycache__/
 *.py[cod]
@@ -35,3 +36,6 @@ ENV/
 .DS_Store
 Thumbs.db
 desktop.ini
+=======
+.vercel
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb

@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>CodeNav AI | Gemini-Powered GitHub Repository Analyzer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+=======
+    <title>CodeNav AI | GitHub Repository Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         body {
             font-family: 'Inter', sans-serif;
             background: radial-gradient(circle at 20% 50%, #0a0a1a, #05050f);
@@ -15,7 +27,17 @@
             color: #fff;
             overflow-x: hidden;
         }
+<<<<<<< HEAD
         .container { max-width: 1400px; margin: 0 auto; padding: 24px; position: relative; z-index: 1; }
+=======
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            position: relative;
+            z-index: 1;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .header {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -27,9 +49,20 @@
             align-items: center;
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
+<<<<<<< HEAD
         .logo { display: flex; align-items: center; gap: 16px; }
         .logo-icon {
             width: 52px; height: 52px;
+=======
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .logo-icon {
+            width: 52px;
+            height: 52px;
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 18px;
             display: flex;
@@ -37,8 +70,22 @@
             justify-content: center;
             font-size: 28px;
         }
+<<<<<<< HEAD
         .logo-text h1 { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #fff, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .logo-text p { font-size: 12px; color: rgba(255, 255, 255, 0.5); }
+=======
+        .logo-text h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo-text p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .ai-status-card {
             display: flex;
             align-items: center;
@@ -56,9 +103,22 @@
             font-weight: 600;
             font-size: 13px;
         }
+<<<<<<< HEAD
         .ai-badge.active { background: linear-gradient(135deg, #00b894, #00cec9); }
         .ai-badge.inactive { background: rgba(255, 255, 255, 0.1); }
         .hero { text-align: center; margin-bottom: 48px; }
+=======
+        .ai-badge.active {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+        }
+        .ai-badge.inactive {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .hero-badge {
             display: inline-block;
             background: rgba(102, 126, 234, 0.2);
@@ -76,7 +136,16 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
         }
+<<<<<<< HEAD
         .hero p { font-size: 18px; color: rgba(255, 255, 255, 0.6); max-width: 600px; margin: 0 auto; }
+=======
+        .hero p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .repo-premium {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -86,7 +155,14 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s;
         }
+<<<<<<< HEAD
         .repo-premium:focus-within { border-color: #667eea; box-shadow: 0 0 40px rgba(102, 126, 234, 0.3); }
+=======
+        .repo-premium:focus-within {
+            border-color: #667eea;
+            box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .repo-input-wrapper {
             display: flex;
             gap: 12px;
@@ -101,7 +177,14 @@
             display: flex;
             align-items: center;
         }
+<<<<<<< HEAD
         .repo-icon-box i { font-size: 24px; color: #667eea; }
+=======
+        .repo-icon-box i {
+            font-size: 24px;
+            color: #667eea;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .repo-input {
             flex: 1;
             background: transparent;
@@ -112,7 +195,13 @@
             outline: none;
             font-family: 'Space Grotesk', monospace;
         }
+<<<<<<< HEAD
         .repo-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+=======
+        .repo-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .analyze-btn {
             background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
@@ -127,8 +216,24 @@
             transition: all 0.3s;
             font-size: 15px;
         }
+<<<<<<< HEAD
         .analyze-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
         .github-note { text-align: center; font-size: 13px; color: rgba(255, 255, 255, 0.4); margin-bottom: 32px; }
+=======
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        .github-note {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 32px;
+        }
+        .github-note i {
+            margin-right: 6px;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -143,8 +248,19 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.3s;
         }
+<<<<<<< HEAD
         .stat-card-premium:hover { transform: translateY(-5px); border-color: rgba(102, 126, 234, 0.5); }
         .stat-icon { font-size: 32px; margin-bottom: 16px; }
+=======
+        .stat-card-premium:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+        .stat-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .stat-number {
             font-size: 42px;
             font-weight: 800;
@@ -153,7 +269,16 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
         }
+<<<<<<< HEAD
         .stat-label { font-size: 13px; color: rgba(255, 255, 255, 0.6); text-transform: uppercase; letter-spacing: 1px; }
+=======
+        .stat-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .two-columns {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
@@ -175,7 +300,16 @@
             justify-content: space-between;
             align-items: center;
         }
+<<<<<<< HEAD
         .panel-header h3 { font-size: 18px; display: flex; align-items: center; gap: 10px; }
+=======
+        .panel-header h3 {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .file-list {
             max-height: 320px;
             overflow-y: auto;
@@ -192,18 +326,45 @@
             cursor: pointer;
             transition: all 0.2s;
         }
+<<<<<<< HEAD
         .file-item:hover { background: rgba(102, 126, 234, 0.15); transform: translateX(5px); }
         .file-icon {
             width: 36px; height: 36px;
+=======
+        .file-item:hover {
+            background: rgba(102, 126, 234, 0.15);
+            transform: translateX(5px);
+        }
+        .file-icon {
+            width: 36px;
+            height: 36px;
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
             background: rgba(102, 126, 234, 0.2);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+<<<<<<< HEAD
         .file-info { flex: 1; }
         .file-name { font-weight: 500; font-size: 14px; margin-bottom: 4px; }
         .file-meta { font-size: 11px; color: rgba(255, 255, 255, 0.5); display: flex; gap: 12px; }
+=======
+        .file-info {
+            flex: 1;
+        }
+        .file-name {
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .file-meta {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            gap: 12px;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .chat-panel {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -221,8 +382,20 @@
             align-items: center;
             gap: 12px;
         }
+<<<<<<< HEAD
         .chat-header i { font-size: 28px; color: #667eea; }
         .chat-messages { flex: 1; overflow-y: auto; padding: 20px; }
+=======
+        .chat-header i {
+            font-size: 28px;
+            color: #667eea;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .message {
             display: flex;
             gap: 14px;
@@ -234,7 +407,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .message-avatar {
+<<<<<<< HEAD
             width: 38px; height: 38px;
+=======
+            width: 38px;
+            height: 38px;
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 12px;
             display: flex;
@@ -242,17 +420,33 @@
             justify-content: center;
             font-size: 18px;
         }
+<<<<<<< HEAD
         .message.user .message-avatar { background: linear-gradient(135deg, #f093fb, #f5576c); }
         .message-content { flex: 1; }
+=======
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+        .message-content {
+            flex: 1;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .message-text {
             background: rgba(255, 255, 255, 0.08);
             padding: 12px 18px;
             border-radius: 18px;
             line-height: 1.5;
             font-size: 14px;
+<<<<<<< HEAD
             white-space: pre-wrap;
         }
         .message.user .message-text { background: linear-gradient(135deg, #667eea, #764ba2); }
+=======
+        }
+        .message.user .message-text {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .message-time {
             font-size: 10px;
             color: rgba(255, 255, 255, 0.4);
@@ -272,7 +466,14 @@
             padding: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
+<<<<<<< HEAD
         .input-group { display: flex; gap: 12px; }
+=======
+        .input-group {
+            display: flex;
+            gap: 12px;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .chat-input {
             flex: 1;
             background: rgba(255, 255, 255, 0.08);
@@ -283,7 +484,13 @@
             font-size: 14px;
             outline: none;
         }
+<<<<<<< HEAD
         .chat-input:focus { border-color: #667eea; }
+=======
+        .chat-input:focus {
+            border-color: #667eea;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .send-btn {
             background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
@@ -311,7 +518,14 @@
             align-items: center;
             gap: 8px;
         }
+<<<<<<< HEAD
         .quick-chip:hover { background: rgba(102, 126, 234, 0.3); border-color: #667eea; }
+=======
+        .quick-chip:hover {
+            background: rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -327,15 +541,37 @@
             z-index: 1000;
         }
         .loader {
+<<<<<<< HEAD
             width: 60px; height: 60px;
+=======
+            width: 60px;
+            height: 60px;
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
             border: 3px solid rgba(102, 126, 234, 0.3);
             border-top-color: #667eea;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
+<<<<<<< HEAD
         @keyframes spin { to { transform: rotate(360deg); } }
         .loader-text { margin-top: 20px; font-size: 16px; }
         .footer { margin-top: 32px; text-align: center; padding: 20px; color: rgba(255, 255, 255, 0.3); font-size: 12px; }
+=======
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loader-text {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .footer {
+            margin-top: 32px;
+            text-align: center;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+        }
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         @media (max-width: 1024px) {
             .two-columns { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -352,6 +588,7 @@
     <div class="container">
         <div class="header">
             <div class="logo">
+<<<<<<< HEAD
                 <div class="logo-icon"><i class="fab fa-github"></i></div>
                 <div class="logo-text">
                     <h1>CodeNav AI</h1>
@@ -360,18 +597,42 @@
             </div>
             <div class="ai-status-card">
                 <div class="ai-badge" id="aiBadge"><i class="fas fa-microchip"></i><span>Initializing...</span></div>
+=======
+                <div class="logo-icon">
+                    <i class="fab fa-github"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>CodeNav AI</h1>
+                    <p>GitHub Repository Analyzer</p>
+                </div>
+            </div>
+            <div class="ai-status-card">
+                <div class="ai-badge" id="aiBadge">
+                    <i class="fas fa-microchip"></i>
+                    <span>Initializing...</span>
+                </div>
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
                 <i class="fas fa-shield-alt" style="color: #667eea;"></i>
             </div>
         </div>
 
         <div class="hero">
+<<<<<<< HEAD
             <div class="hero-badge"><i class="fab fa-github"></i> Powered by Google Gemini AI</div>
             <h2>Analyze Any GitHub Repository<br>In Seconds</h2>
             <p>Enter a GitHub URL and let Gemini AI analyze the code structure, find entry points, and answer your questions.</p>
+=======
+            <div class="hero-badge">
+                <i class="fab fa-github"></i> GitHub Repository Analysis
+            </div>
+            <h2>Analyze Any GitHub Repository<br>In Seconds</h2>
+            <p>Enter a GitHub URL and let AI analyze the code structure, find entry points, and answer your questions.</p>
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         </div>
 
         <div class="repo-premium">
             <div class="repo-input-wrapper">
+<<<<<<< HEAD
                 <div class="repo-icon-box"><i class="fab fa-github"></i></div>
                 <input type="text" id="githubUrl" class="repo-input" placeholder="https://github.com/user/repository">
                 <button id="analyzeBtn" class="analyze-btn"><i class="fas fa-code-branch"></i><span>Analyze Repository</span></button>
@@ -379,11 +640,28 @@
         </div>
 
         <div class="github-note"><i class="fas fa-info-circle"></i> Enter any public GitHub repository URL. Powered by Google Gemini AI for intelligent code analysis.</div>
+=======
+                <div class="repo-icon-box">
+                    <i class="fab fa-github"></i>
+                </div>
+                <input type="text" id="githubUrl" class="repo-input" placeholder="https://github.com/user/repository">
+                <button id="analyzeBtn" class="analyze-btn">
+                    <i class="fas fa-code-branch"></i>
+                    <span>Analyze Repository</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="github-note">
+            <i class="fas fa-info-circle"></i> Enter any public GitHub repository URL. The repository will be cloned and analyzed securely.
+        </div>
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
 
         <div id="dashboard" style="display: none;">
             <div class="stats-grid" id="statsGrid"></div>
             <div class="two-columns">
                 <div class="files-panel">
+<<<<<<< HEAD
                     <div class="panel-header"><h3><i class="fas fa-code-branch"></i> Repository Files</h3><i class="fas fa-chevron-down" style="color: rgba(255,255,255,0.4);"></i></div>
                     <div class="file-list" id="fileList"></div>
                 </div>
@@ -395,30 +673,85 @@
                             <div class="message-content">
                                 <div class="message-text"><strong>✨ Welcome to CodeNav AI with Gemini!</strong><br><br>Enter a GitHub repository URL above and click <strong>Analyze</strong> to begin.<br><br><i class="fas fa-lightbulb" style="color: #f39c12;"></i> <strong>Try these examples:</strong><br>• <code>https://github.com/pallets/flask</code><br>• <code>https://github.com/django/django</code><br>• <code>https://github.com/nehamannava123/Hospitalmangement</code></div>
                                 <div class="message-time"><i class="far fa-clock"></i> Just now</div>
+=======
+                    <div class="panel-header">
+                        <h3><i class="fas fa-code-branch"></i> Repository Files</h3>
+                        <i class="fas fa-chevron-down" style="color: rgba(255,255,255,0.4);"></i>
+                    </div>
+                    <div class="file-list" id="fileList"></div>
+                </div>
+                <div class="chat-panel">
+                    <div class="chat-header">
+                        <i class="fas fa-robot"></i>
+                        <div>
+                            <strong>CodeNav AI Assistant</strong>
+                            <div style="font-size: 11px; color: rgba(255,255,255,0.5);">Ask about the repository</div>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <div class="message-text">
+                                    <strong>✨ Welcome to CodeNav AI!</strong><br><br>
+                                    Enter a GitHub repository URL above and click <strong>Analyze</strong> to begin.<br><br>
+                                    <i class="fas fa-lightbulb" style="color: #f39c12;"></i> <strong>Try these examples:</strong><br>
+                                    • <code>https://github.com/pallets/flask</code><br>
+                                    • <code>https://github.com/django/django</code><br>
+                                    • <code>https://github.com/nehamannava123/Hospitalmagement</code>
+                                </div>
+                                <div class="message-time">
+                                    <i class="far fa-clock"></i> Just now
+                                </div>
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
                             </div>
                         </div>
                     </div>
                     <div class="chat-input-area">
                         <div class="input-group">
                             <input type="text" id="questionInput" class="chat-input" placeholder="Ask about the repository...">
+<<<<<<< HEAD
                             <button id="sendBtn" class="send-btn"><i class="fas fa-paper-plane"></i><span>Send</span></button>
+=======
+                            <button id="sendBtn" class="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Send</span>
+                            </button>
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
                         </div>
                         <div class="quick-actions">
                             <div class="quick-chip" data-q="What is the main purpose of this repository?"><i class="fas fa-question-circle"></i> Purpose</div>
                             <div class="quick-chip" data-q="What is the entry point of this application?"><i class="fas fa-play-circle"></i> Entry Point</div>
                             <div class="quick-chip" data-q="What programming languages are used?"><i class="fas fa-code"></i> Languages</div>
                             <div class="quick-chip" data-q="Explain the architecture of this project"><i class="fas fa-brain"></i> Architecture</div>
+<<<<<<< HEAD
                             <div class="quick-chip" data-q="flow authentication"><i class="fas fa-diagram-project"></i> Auth Flow</div>
+=======
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="footer"><i class="fas fa-shield-alt"></i> Powered by Google Gemini AI • Privacy-First • Temporary Cloning</div>
     </div>
 
     <div class="loading-overlay" id="loadingOverlay"><div class="loader"></div><div class="loader-text">Cloning repository from GitHub...</div></div>
+=======
+        <div class="footer">
+            <i class="fas fa-shield-alt"></i> Privacy-First • Temporary Cloning • Auto-Cleanup
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+        <div class="loader-text">Cloning repository from GitHub...</div>
+    </div>
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
 
     <script>
         let currentRepoData = null;
@@ -452,6 +785,7 @@
 
         function updateFileList(files) {
             const container = document.getElementById('fileList');
+<<<<<<< HEAD
             console.log('📁 Files received:', files);
             
             if (!files || files.length === 0) {
@@ -478,6 +812,25 @@
             }
             container.innerHTML = html;
             console.log('✅ Displayed', files.length, 'files');
+=======
+            if (!files || files.length === 0) {
+                container.innerHTML = '<div style="padding: 20px; text-align: center; color: rgba(255,255,255,0.5);">No files detected</div>';
+                return;
+            }
+            container.innerHTML = files.map(f => `
+                <div class="file-item" onclick="askAboutFile('${f.name}')">
+                    <div class="file-icon"><i class="fas fa-file-code"></i></div>
+                    <div class="file-info">
+                        <div class="file-name">${f.name}</div>
+                        <div class="file-meta">
+                            <span><i class="far fa-file"></i> ${f.lines} lines</span>
+                            <span><i class="far fa-calendar"></i> ${f.modified || 'N/A'}</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color: rgba(255,255,255,0.3);"></i>
+                </div>
+            `).join('');
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
         }
 
         function askAboutFile(filename) {
@@ -489,12 +842,25 @@
             const messages = document.getElementById('chatMessages');
             const div = document.createElement('div');
             div.className = `message ${isUser ? 'user' : 'bot'}`;
+<<<<<<< HEAD
             const aiTag = isAI ? '<span class="ai-tag"><i class="fas fa-microchip"></i> Gemini AI</span>' : '';
             div.innerHTML = `
                 <div class="message-avatar"><i class="${isUser ? 'fas fa-user' : 'fas fa-robot'}"></i></div>
                 <div class="message-content">
                     <div class="message-text">${text.replace(/\n/g, '<br>')}</div>
                     <div class="message-time"><i class="far fa-clock"></i> Just now ${aiTag}</div>
+=======
+            const aiTag = isAI ? '<span class="ai-tag"><i class="fas fa-microchip"></i> AI</span>' : '';
+            div.innerHTML = `
+                <div class="message-avatar">
+                    <i class="${isUser ? 'fas fa-user' : 'fas fa-robot'}"></i>
+                </div>
+                <div class="message-content">
+                    <div class="message-text">${text.replace(/\n/g, '<br>')}</div>
+                    <div class="message-time">
+                        <i class="far fa-clock"></i> Just now ${aiTag}
+                    </div>
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
                 </div>
             `;
             messages.appendChild(div);
@@ -509,7 +875,12 @@
             }
 
             document.getElementById('loadingOverlay').style.display = 'flex';
+<<<<<<< HEAD
             addMessage(`🔍 Analyzing <strong>${githubUrl}</strong>...`, false);
+=======
+            document.querySelector('.loader-text').innerHTML = 'Cloning repository from GitHub...';
+            addMessage(`<i class="fab fa-github"></i> Analyzing <strong>${githubUrl}</strong>...`, false);
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
 
             try {
                 const response = await fetch('/analyze', {
@@ -520,7 +891,11 @@
                 const data = await response.json();
 
                 if (data.error) {
+<<<<<<< HEAD
                     addMessage(`❌ Error: ${data.error}`, false);
+=======
+                    addMessage(`<i class="fas fa-exclamation-triangle"></i> Error: ${data.error}`, false);
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
                     return;
                 }
 
@@ -534,6 +909,7 @@
                     if (data.ai_status && data.ai_status.available) {
                         aiAvailable = true;
                         badge.className = 'ai-badge active';
+<<<<<<< HEAD
                         badge.innerHTML = '<i class="fab fa-google"></i><span>Gemini AI Ready</span>';
                         addMessage(`✅ <strong>Analysis Complete!</strong><br><br>📊 Found ${data.stats.files} files with ${data.stats.lines.toLocaleString()} lines.<br>🤖 Gemini AI is ready! Try asking about the code.`, false);
                     } else {
@@ -545,6 +921,19 @@
                 }
             } catch (error) {
                 addMessage(`❌ Network error: ${error.message}`, false);
+=======
+                        badge.innerHTML = '<i class="fas fa-microchip"></i><span>AI Active</span>';
+                        addMessage(`<i class="fas fa-check-circle"></i> <strong>Analysis Complete!</strong><br><br>📊 Found ${data.stats.files} files with ${data.stats.lines.toLocaleString()} lines.<br>🤖 AI is ready! Try asking about the code.`, false);
+                    } else {
+                        aiAvailable = false;
+                        badge.className = 'ai-badge inactive';
+                        badge.innerHTML = '<i class="fas fa-microchip"></i><span>AI Standby</span>';
+                        addMessage(`<i class="fas fa-check-circle"></i> <strong>Analysis Complete!</strong><br><br>📊 Found ${data.stats.files} files with ${data.stats.lines.toLocaleString()} lines.`, false);
+                    }
+                }
+            } catch (error) {
+                addMessage(`<i class="fas fa-exclamation-triangle"></i> Network error: ${error.message}`, false);
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
             } finally {
                 document.getElementById('loadingOverlay').style.display = 'none';
             }

@@ -6,6 +6,7 @@ class FlowVisualizer:
         self.repo = repo_info
     
     def simulate_flow(self, query: str) -> Dict:
+<<<<<<< HEAD
         query_lower = query.lower()
         
         # Detect flow type from query
@@ -79,3 +80,16 @@ class FlowVisualizer:
             'steps': [{'number': i+1, 'description': s.split('. ')[1] if '. ' in s else s} for i, s in enumerate(steps)],
             'visualization': diagram
         }
+=======
+        steps = ['▶️ Start', '⚙️ Process', '💾 Execute', '✅ Return Result']
+        diagram = "┌─────────────────────────────────────────┐\n"
+        diagram += "│         EXECUTION FLOW DIAGRAM          │\n"
+        diagram += "├─────────────────────────────────────────┤\n"
+        for i, s in enumerate(steps, 1):
+            diagram += f"│  {i}. {s:<37} │\n"
+            if i < len(steps):
+                diagram += "│                    ↓                    │\n"
+        diagram += "└─────────────────────────────────────────┘"
+        return {'success': True, 'flow_type': 'generic', 'visualization': diagram, 'steps': []}
+    
+>>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
