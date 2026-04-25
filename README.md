@@ -2,7 +2,6 @@
 
 # 🤖 CodeNav AI
 
-<<<<<<< HEAD
 ## Gemini-Powered GitHub Repository Analyzer
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)
@@ -220,4 +219,4 @@ Special thanks to **Google Gemini API** and Team HackFusion4.
 ⭐ If you like this project, give it a star!
 
 </div>
->>>>>>> 9db4c5255575581e720a0c6164eb2f30887f30fb
+
