@@ -4,15 +4,12 @@
 
 ## AI-Powered GitHub Repository Analyzer
 
+**Understand any GitHub repository in seconds — powered by Google Gemini AI**
+
 ![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-2.3.3-green?logo=flask&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google-Gemini_API-orange?logo=google&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
-
-**Understand any GitHub repository in seconds — with AI-powered insights**
-
-[Features](#✨-features) • [Quick Start](#🚀-quick-start) • [AI Setup](#🤖-ai-setup) • [Architecture](#🏗️-architecture) • [Demo](#🎬-demo)
 
 </div>
 
@@ -20,101 +17,168 @@
 
 ## 📌 Overview
 
-**CodeNav AI** is an intelligent codebase navigation assistant that analyzes any public GitHub repository and answers questions about its structure, files, and functionality. It uses **Ollama** (local AI) to provide intelligent responses and features a beautiful, modern web interface.
+**CodeNav AI** is an intelligent codebase navigation assistant that analyzes any public GitHub repository and answers your questions using **Google Gemini AI**.
 
-### 🎯 Problem We Solve
+Built during a **24-hour hackathon** by **Team HackFusion4**, this tool transforms hours of manual code exploration into seconds of AI-powered insights.
 
-Developers and students struggle to understand large, unfamiliar codebases due to:
-- Poor or missing documentation
-- Complex architecture
-- No guided exploration
+---
 
-**Result:** Slow onboarding, reduced productivity, and difficulty learning from real-world projects.
+## 🎯 Problem Statement
 
-### 💡 Our Solution
+Developers often struggle with:
 
-CodeNav AI provides:
-- 🔍 **Instant GitHub repository analysis**
-- 🤖 **AI-powered Q&A** about any codebase
-- 📁 **Visual file structure exploration**
-- 🎯 **Smart entry point detection**
-- 🔄 **Execution flow visualization**
+- ❌ Poor or missing documentation  
+- ❌ Complex and unfamiliar architectures  
+- ❌ No clear starting point in large codebases  
+
+👉 Result: Slow onboarding and reduced productivity.
+
+---
+
+## 💡 Solution
+
+CodeNav AI enables:
+
+- 🔍 Instant repository understanding  
+- 🤖 Natural language interaction with code  
+- 📁 Structured file exploration  
+- 🎯 Smart entry-point detection  
+- 🔄 Execution flow visualization  
 
 ---
 
 ## ✨ Features
 
 | Feature | Description |
-|---------|-------------|
-| <img src="https://img.icons8.com/color/24/000000/github--v1.png"/> **GitHub Analysis** | Analyze any public GitHub repository by URL |
-| <img src="https://img.icons8.com/color/24/000000/artificial-intelligence.png"/> **AI-Powered Q&A** | Ask questions about the codebase (Ollama integration) |
-| <img src="https://img.icons8.com/color/24/000000/folder-inspector.png"/> **File Explorer** | View repository structure with file sizes and metadata |
-| <img src="https://img.icons8.com/color/24/000000/statistics--v1.png"/> **Statistics Dashboard** | See files, lines, language at a glance |
-| <img src="https://img.icons8.com/color/24/000000/play--v1.png"/> **Entry Point Detection** | Automatically finds where to start exploring |
-| <img src="https://img.icons8.com/color/24/000000/flow-chart.png"/> **Flow Visualization** | See execution flow diagrams for authentication, API, database |
-| <img src="https://img.icons8.com/color/24/000000/comments.png"/> **Interactive Chat** | Natural language Q&A interface |
-| <img src="https://img.icons8.com/color/24/000000/docker.png"/> **Docker Ready** | One-command deployment |
+|--------|------------|
+| 🔗 GitHub Analysis | Clone and analyze any public repository |
+| 🤖 AI Q&A | Ask questions like “What does this project do?” |
+| 📁 File Explorer | Browse structure with metadata |
+| 📊 Statistics | Files, LOC, language detection |
+| 🎯 Entry Detection | Finds starting point automatically |
+| 🔄 Flow Visualization | Shows execution flows |
+| 🎨 UI | Modern glassmorphism design |
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### 🔧 Prerequisites
 
-- Python 3.11 or higher
-- Git (for cloning repositories)
-- (Optional) Ollama for AI features
+- Python **3.11+** *(Avoid 3.14 due to compatibility issues)*  
+- Git installed  
+- Google Gemini API Key  
 
-### Local Development
+---
+
+### ⚙️ Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/nehamannava123/HackFusion4-Buildwithai-24hrs-.git
 cd HackFusion4-Buildwithai-24hrs-
-
-# Install dependencies
 pip install -r requirements.txt
+```
 
-# Run the application
+---
+
+### 🔑 Environment Setup
+
+Create a `.env` file:
+
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+---
+
+### ▶️ Run the App
+
+```bash
 python app.py
+```
 
-AI setup - 
-# Download from https://ollama.ai
-ollama pull llama3.2:1b
+Open in browser:
 
-architecture - 
-┌─────────────────────────────────────────────────────────────┐
-│                    CodeNav AI Architecture                   │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
-│  │   Browser   │◄──►│   Flask     │◄──►│  GitHub     │     │
-│  │   (HTML/CSS)│    │   Backend   │    │  API Clone  │     │
-│  └─────────────┘    └─────────────┘    └─────────────┘     │
-│         ▲                  ▲                  ▲            │
-│         │                  │                  │            │
-│         ▼                  ▼                  ▼            │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
-│  │   Chat UI   │    │   AI/QA     │    │  Ollama     │     │
-│  │  Interface  │    │   Engine    │    │  (Local AI) │     │
-│  └─────────────┘    └─────────────┘    └─────────────┘     │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```
+http://127.0.0.1:5000/
+```
 
-project structure - 
+---
+
+## 🧠 How It Works
+
+1. User enters a GitHub repository URL  
+2. Backend clones repository using GitPython  
+3. Analyzer extracts:
+   - File structure  
+   - Code statistics  
+   - Entry points  
+4. Gemini AI processes queries and generates answers  
+5. Frontend displays results interactively  
+
+---
+
+## 🏗️ Architecture
+
+```
+Browser (UI)
+     │
+     ▼
+Flask Backend
+     │
+ ┌───┴───────────────┐
+ │                   │
+ ▼                   ▼
+Repository Analyzer   Gemini AI
+(GitPython + Logic)   (Q&A Engine)
+     │                   │
+     └──────► Response ◄─┘
+```
+
+---
+
+## 📂 Project Structure
+
+```
 codenav-ai/
-├── 📁 codenav/                 # Core Python modules
-│   ├── analyzer.py             # Repository analysis
-│   ├── ai_qa.py               # AI integration (Ollama)
-│   ├── hybrid_qa.py           # Smart router (AI vs Rules)
-│   ├── detector.py            # Entry point detection
-│   ├── visualizer.py          # Flow diagrams
-│   └── qa.py                  # Rule-based fallback
-├── 📁 templates/               # HTML templates
-│   └── index.html             # Main web interface
-├── 📁 static/                  # CSS styles
-├── 📁 api/                     # Serverless entry (Vercel)
-├── app.py                      # Main Flask application
-├── Dockerfile                  # Container configuration
-├── docker-compose.yml          # Multi-container setup
-└── requirements.txt            # Python dependencies
+├── codenav/
+│   ├── analyzer.py
+│   ├── direct_ai.py
+│   ├── hybrid_qa.py
+│   ├── detector.py
+│   ├── visualizer.py
+│   └── qa.py
+│
+├── templates/
+│   └── index.html
+│
+├── static/
+├── app.py
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 🔗 Links
+
+📂 GitHub Repo:  
+https://github.com/nehamannava123/HackFusion4-Buildwithai-24hrs-
+
+🔗 LinkedIn:  
+- Thanushree H J (Lead Developer): https://www.linkedin.com/in/thanushreehj/  
+
+---
+
+## 🙌 Acknowledgement
+
+Built during a 24-hour hackathon with intense collaboration and problem-solving.  
+Special thanks to **Google Gemini API** and Team HackFusion4.
+
+---
+
+<div align="center">
+
+⭐ If you like this project, give it a star!
+
+</div>
